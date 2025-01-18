@@ -1,429 +1,408 @@
- ![License](https://img.shields.io/badge/Version-V1.0.8-red) ![Language](https://img.shields.io/badge/Language-Python3-blue) ![License](https://img.shields.io/badge/License-GPL3.0-orange) [![HitCount](https://hits.dwyl.com/kelvinBen/kelvinBen/AppInfoScanner.svg?style=flat&show=unique)](http://hits.dwyl.com/kelvinBen/kelvinBen/AppInfoScanner)
+![License](https://img.shields.io/badge/Version-V1.0.8-red) ![Language](https://img.shields.io/badge/Language-Python3-blue) ![License](https://img.shields.io/badge/License-GPL3.0-orange) [![HitCount](https://hits.dwyl.com/kelvinBen/kelvinBen/AppInfoScanner.svg?style=flat&show=unique)](http://hits.dwyl.com/kelvinBen/kelvinBen/AppInfoScanner)
 
-
-该项目目前仅仅是规划项目中的冰山一角，如果您对此项目感兴趣或者想参与后继项目的开发工作或者翻译工作中，请发送邮件至blsm@vip.qq.com说明你的能力和诉求。
+This project is currently just the tip of the iceberg in the planned project. If you are interested in this project or want to participate in the development or translation work of future projects, please send an email to blsm@vip.qq.com to explain your capabilities and requests.
 
 ## AppInfoScanner
 
-一款适用于以HW行动/红队/渗透测试团队为场景的移动端(Android、iOS、WEB、H5、静态网站)信息收集扫描工具，可以帮助渗透测试工程师、攻击队成员、红队成员快速收集到移动端或者静态WEB站点中关键的资产信息并提供基本的信息输出,如：Title、Domain、CDN、指纹信息、状态信息等。
+A tool for information collection scanning, suitable for scenarios such as HW operations/red teams/penetration testing teams, which helps penetration testers, attack team members, and red team members quickly collect key asset information from mobile apps (Android, iOS), web apps, H5, and static websites. It provides basic output information such as: Title, Domain, CDN, Fingerprint, Status information, etc.
 
-## 前言
-- 本项目的开发者目前为个人开发者同时有自己的工作，新的功能或者需求会在闲暇时间进行开发，BUG会优先进行处理。
-- 如果在使用中遇到问题或者有新的需求，请在[](https://github.com/kelvinBen/AppInfoScanner/issues)提交BUG反馈，提交BUG前请先阅读最后的"常见问题"。
-- 如果您觉得这个项目对您有用，请点击本项目右上角的"star"按钮。
-- 如果您想持续跟进新的版本情况，请点击本项目右上角的"Watch"按钮。
-- 如果您想参与本项目的开发，请点击本项目右上角的"Fork"按钮,否则请勿点击"Fork"按钮。
+## Introduction
+- The current developer of this project is an individual developer who also has a job. New features or demands will be developed in leisure time, and bugs will be handled as a priority.
+- If you encounter any issues during use or have new demands, please submit bug feedback at [Issues](https://github.com/kelvinBen/AppInfoScanner/issues). Please read the "Frequently Asked Questions" section before submitting a bug.
+- If you find this project useful, please click the "star" button in the upper-right corner of the project.
+- If you want to follow up on new versions, please click the "Watch" button in the upper-right corner.
+- If you want to contribute to this project, please click the "Fork" button in the upper-right corner. Otherwise, do not click the "Fork" button.
 
-## 免责声明
-请勿将本项目技术或代码应用在恶意软件制作、软件著作权/知识产权盗取或不当牟利等**非法用途**中。实施上述行为或利用本项目对非自己著作权所有的程序进行数据嗅探将涉嫌违反《中华人民共和国刑法》第二百一十七条、第二百八十六条，《中华人民共和国网络安全法》《中华人民共和国计算机软件保护条例》等法律规定。本项目提及的技术仅可用于私人学习测试等合法场景中，任何不当利用该技术所造成的刑事、民事责任均与本项目作者无关。
+## Disclaimer
+Do not use the technologies or code from this project for **illegal purposes** such as creating malicious software, stealing software copyrights/intellectual property, or improper profit-making. Engaging in such activities or using this project to sniff data from programs that are not owned by you may violate the laws of the People's Republic of China, including Articles 217 and 286 of the Criminal Law, the Cybersecurity Law, and the Computer Software Protection Regulations. The technologies mentioned in this project should only be used in legitimate scenarios, such as private learning and testing. Any criminal or civil liabilities resulting from the misuse of this technology are not the responsibility of the project author.
 
-## 适用场景
-- 日常渗透测试中对APP中进行关键资产信息收集，比如URL地址、IP地址、关键字等信息的采集等。
-- 大型攻防演练场景中对APP中进行关键资产信息收集，比如URL地址、IP地址、关键字等信息的采集等。
-- 对WEB网站源代码进行URL地址、IP地址、关键字等信息进行采集等(可以是开源的代码也可以是右击网页源代码另存为)。
-- 对H5页面进行进行URL地址、IP地址、关键字等信息进行采集等。
-- 对某个APP进行定相信息收集等
+## Applicable Scenarios
+- Key asset information collection in penetration testing of mobile apps, such as collecting URL addresses, IP addresses, keywords, etc.
+- Key asset information collection in large-scale red team/defense drills for mobile apps, such as collecting URL addresses, IP addresses, keywords, etc.
+- Collection of URL addresses, IP addresses, keywords, etc., from the source code of web websites (can be from open-source code or right-click "Save As" on the webpage source code).
+- Collection of URL addresses, IP addresses, keywords, etc., from H5 pages.
+- Collection of basic information for a specific app.
 
-## 功能介绍:
-- [x] 支持目录级别的批量扫描
-- [x] 支持DEX、APK、IPA、MACH-O、HTML、JS、Smali、ELF等文件的信息收集
-- [x] 支持APK、IPA、H5等文件自动下载并进行一键信息收集
-- [x] 支持自定义请求头、请求报文、请求方法
-- [x] 支持规则自定义，随心自定义扫描规则
-- [x] 支持自定义忽略资源文件
-- [x] 支持自定义配置Android壳规则
-- [x] 支持自定义配置中间件规则
-- [x] 支持Android加固壳、iPA官方壳的检测
-- [x] 支持IP地址、URL地址、中间件(json组件和xml组件)的信息采集
-- [x] 支持Android对应包名下内容的采集
-- [x] 支持网络嗅探功能，可以提供基本的信息输出
-- [x] 支持Windows系统、MacOS系统、*nux系列的系统
-- [x] 具备简单的AI识别功能，可以快速过滤三方URL地址
-- [ ] 指纹识别模块
-- [ ] 添加国际化语言包
-- [ ] 一键对APK文件进行自动修复
-- [ ] 识别到壳后自动进行脱壳处理
+## Features:
+- [x] Supports directory-level bulk scanning
+- [x] Supports information collection for DEX, APK, IPA, MACH-O, HTML, JS, Smali, ELF, and other files
+- [x] Supports automatic downloading of APK, IPA, H5 files and one-click information collection
+- [x] Supports custom request headers, request messages, and request methods
+- [x] Supports custom rules, allowing flexible scanning rules
+- [x] Supports custom ignoring of resource files
+- [x] Supports custom Android shell rule configuration
+- [x] Supports custom middleware rule configuration
+- [x] Supports detection of Android reinforcement shell and official IPA shell
+- [x] Supports IP addresses, URL addresses, and middleware (json and xml components) information collection
+- [x] Supports collection of content under Android package names
+- [x] Supports network sniffing functionality and provides basic output information
+- [x] Supports Windows, MacOS, and *nix series operating systems
+- [x] Simple AI recognition function for fast filtering of third-party URLs
+- [ ] Fingerprint recognition module
+- [ ] Add internationalization language packs
+- [ ] One-click automatic fixing of APK files
+- [ ] Automatic unboxing when a shell is detected
 
-## 部分截图
+## Screenshots
 
 ![](result.png)
 
-## 环境说明
-- Apk文件解析需要使用JAVA环境,JAVA版本1.8及以下
-- Python3的运行环境
+## Environment Requirements
+- Apk file analysis requires Java environment, Java version 1.8 and below
+- Python3 runtime environment
 
-## 目录说明
+## Directory Structure
+
 ```
 AppInfoScanner
-    |-- libs  程序的核心代码
-        |-- core
-            |-- __init__.py 全局配置信息
-            |-- parses.py 用于解析文件中的静态信息
-            |-- download.py 用于自动下载APP或者H5页面
-            |-- net.py 用于进行网络嗅探，并获取基本信息
-        |-- task
-            |-- __init__.py 目录初始化文件
-            |-- base_task.py 统一任务调度中心
- 			|-- android_task.py 用于处理Android相关的任务
-            |-- download_task.py 用于处理自动下载APP或者H5的任务            
-​			 |-- ios_task.py 用于处理iOS相关的任务
-            |-- net_task.py 用于处理网络嗅探相关任务
-​            |-- web_task.py 用于处理Web相关的任务，比如网页右键源代码、H5相关的静态信息
-​    |-- tools 程序需要依赖的工具
-​        |-- apktool.jar 用于反编译apk文件，不同平台可能需要进行自我切换
-​        |-- baksmali.jar 用于反编译dex文件，不同平台可能需要进行自我切换
-​        |-- strings.exe 用于windows 32下获取iPA的字符串信息
-​        |-- strings64.exe 用于windows 64的系统获取iPA的字符串信息
-​    |-- __init__.py 目录初始化文件 
-    |-- app.py 主运行程序
-​    |-- config.py 整个程序的配置文件
-​    |-- README.md  程序使用说明
-    |-- requirements.txt 程序中需要安装的依赖库
-    |-- update.md 程序历史版本信息
-```
-## 使用说明
+|-- libs The core code of the program
+|-- core
+|-- __init__.py Global configuration information
+|-- parses.py Used to parse static information in the file
+|-- download.py Used to automatically download APP or H5 pages
+|-- net.py Used to sniff the network and obtain basic information
+|-- task
+|-- __init__.py Directory initialization file
+|-- base_task.py Unified task scheduling center
+|-- android_task.py Used to handle Android-related tasks
+|-- download_task.py Used to handle tasks for automatically downloading APP or H5
+​ |-- ios_task.py Used to handle iOS-related tasks
+|-- net_task.py Used to handle network sniffing related tasks
+​ |-- web_task.py Used to handle Web-related tasks, such as right-click source code of web pages, static information related to H5
+​ |-- tools Tools that the program needs to rely on
+​ |-- apktool.jar Used to decompile apk files. Different platforms may need to switch themselves. ​ |-- baksmali.jar Used to decompile dex files. Different platforms may need to switch themselves. ​ |-- strings.exe Used to obtain iPA string information under windows 32 ​ |-- strings64.exe Used to obtain iPA string information under windows 64 ​ |-- __init__.py Directory initialization file ​ |-- app.py Main running program ​ |-- config.py Configuration file for the entire program ​ |-- README.md Program instructions ​ |-- requirements.txt Dependent libraries to be installed in the program ​ |-- update.md Program historical version information ​``` ​## Instructions ​ ​1. Download ​``` ​ git clone https://github.com/kelvinBen/AppInfoScanner.git ​ Or copy the following link to the browser to download the latest official version ​ https://github.com/kelvinBen/AppInfoScanner/releases/latest ​Domestic fast download channel:
 
-1. 下载
-```
-    git clone https://github.com/kelvinBen/AppInfoScanner.git
-    
-    或者复制以下链接到浏览器下载最新正式版本
-    
-    https://github.com/kelvinBen/AppInfoScanner/releases/latest
-
-    国内快速下载通道:
-
-    git clone https://gitee.com/kelvin_ben/AppInfoScanner.git
+git clone https://gitee.com/kelvin_ben/AppInfoScanner.git
 
 ```
 
-2. 安装依赖库
+2. Install dependent libraries
 ```
-    cd AppInfoScanner
-    python -m pip install -r requirements.txt
-```
-
-3. 运行(基础版)
-
-- 扫描Android应用的APK文件、DEX文件、需要下载的APK文件下载地址、保存需要扫描的文件的目录
-
-```
-    python app.py android -i <Your APK File or DEX File or APK Download Url or Save File Dir>
+cd AppInfoScanner
+python -m pip install -r requirements.txt
 ```
 
-- 扫描iOS应用的IPA文件、Mach-o文件、需要下载的IPA文件下载地址、保存需要扫描的文件目录
+3. Run (Basic version)
+
+- Scan Android application APK files, DEX files, APK file download addresses to be downloaded, and directories to save files to be scanned
 
 ```
-    python app.py ios -i <Your IPA file or Mach-o File or IPA Download Url or Save File Dir>
+python app.py android -i <Your APK File or DEX File or APK Download Url or Save File Dir>
 ```
 
-- 扫描Web站点的文件、目录、需要缓存的站点URl
+- Scan iOS application IPA files, Mach-o files, IPA file download addresses to be downloaded, and save files to be scanned
 
 ```
-    python app.py web -i <Your Web file or Save Web Dir or Web Cache Url>
+python app.py ios -i <Your IPA file or Mach-o File or IPA Download Url or Save File Dir>
 ```
 
-## 进阶操作指南
+- Scan Web site files, directories, and site URls to be cached
 
-### 基本命令格式
+```
+python app.py web -i <Your Web file or Save Web Dir or Web Cache Url>
+```
+
+## Advanced Operation Guide
+
+### Basic Command Format
 ```
 python app.py [TYPE] [OPTIONS] <The URL or directory to scan>
 ```
 
-### 符号信息说明
+### Symbol Information Description
 
 ```
-<> 代表需要扫描的文件或者目录或者URL地址
-| 或的关系，只能选择一个
-[] 代表需要输入的参数
+<> represents the file or directory or URL address to be scanned
+| or relationship, only one can be selected
+[] represents the parameter to be input
 ```
 
-### TYPE参数详细说明
-此参数类型对应基本命令格式中的[TYPE],目前仅支持[android/ios/web]三种类型形式，三种类型形式必须指定一个。
+### TYPE parameter detailed description
+This parameter type corresponds to [TYPE] in the basic command format. Currently, only three types of [android/ios/web] are supported, and one of the three types must be specified.
 
 ```
-android: 用于扫描Android应用相关的文件的内容
-ios: 用于扫描iOS应用相关的文件内容
-web: 用于扫描WEB站点或者H5相关的文件内容
+android: used to scan the contents of files related to Android applications
+ios: used to scan the contents of files related to iOS applications
+web: used to scan the contents of files related to WEB sites or H5
 ```
 
-支持自动根据后缀名称进行修正，即便输入的是ios，实际上-i 输入的参数的文件名为XXX.apk，则会执行android相关的扫描。
+Supports automatic correction based on the suffix name. Even if the input is ios, the file name of the parameter input by -i is XXX.apk, then the android-related scan will be performed.
 
-
-### OPTIONS参数详细说明
-该参数类型对应基本命令格式中的[OPTIONS]，支持多个参数共同使用
-
-```
--i 或者 --inputs: 输入需要进行扫描的文件、目录或者需要自动下载的文件URL地址，如果路径过长请加"进行包裹，此参数为必填项。
--r 或者 --rules: 输入需要扫描文件内容的临时扫描规则。
--s 或者 --sniffer: 开启网络嗅探功能，默认为开启状态。
--n 或者 --no-resource: 忽略所有的资源文件，包含网络嗅探功能中的资源文件(需要先在config.py中配置sniffer_filter相关规则)，默认为不忽略资源。
--a 或者 --all: 输出所有符合扫描规则的结果集合，默认为开启状态。
--t 或者 --threads: 设置线程并发数量，默认为10个线程并发。
--o 或者 --output: 指定扫描结果和扫描过程中产生的临时文件的输出目录，默认为脚本所在的目录。
--p 或者 -- package: 指定Android的APK文件或者DEX文件需要扫描的JAVA包名信息。此参数只能在android类型下使用。
-```
-
-### 具体使用方法
-
-#### Android相关基本操作
-- 对本地APK文件进行扫描
-```
-python app.py android -i <Your apk file>  
-
-例:
-
-python app.py android -i  C:\Users\Administrator\Desktop\Demo.apk
-```
-
-- 对本地Dex文件进行扫描
-```
-python app.py android -i <Your DEX file>  
-
-例:
-
-python app.py android -i  C:\Users\Administrator\Desktop\Demo.dex
+### OPTIONS parameter detailed description
+This parameter type corresponds to [OPTIONS] in the basic command format, and supports multiple parameters to be used together
 
 ```
-- 对URL地址中包含的APK文件进行扫描
+-i or --inputs: Enter the file, directory or URL address of the file to be scanned, if the path is too long, please add " to wrap it, this parameter is required.
+-r or --rules: Enter the temporary scanning rules for the file content to be scanned.
+-s or --sniffer: Enable the network sniffing function, which is enabled by default.
+-n or --no-resource: Ignore all resource files, including resource files in the network sniffing function (sniffer_filter related rules need to be configured in config.py first), and the default is not to ignore resources.
+-a or --all: Output all result sets that meet the scanning rules, which is enabled by default.
+-t or --threads: Set the number of concurrent threads, which defaults to 10 concurrent threads.
+-o or --output: Specify the output directory for the scan results and temporary files generated during the scan, which defaults to the directory where the script is located.
+-p or -- package: Specify the JAVA package name information of the Android APK file or DEX file to be scanned. This parameter can only be used in the android type.
 ```
-python app.py android -i <APK Download Url>  
 
-例:
+### Specific usage method
 
-python app.py android -i "https://127.0.0.1/Demo.apk" 
+#### Basic operations related to Android
+- Scan local APK files
+```
+python app.py android -i <Your apk file>
+
+Example:
+
+python app.py android -i C:\Users\Administrator\Desktop\Demo.apk
+```
+
+- Scan local Dex files
+```
+python app.py android -i <Your DEX file>
+
+Example:
+
+python app.py android -i C:\Users\Administrator\Desktop\Demo.dex
 
 ```
-需要注意此处如果URL地址过长需要使用双引号(")进行包裹
+- Scan the APK file contained in the URL address
+```
+python app.py android -i <APK Download Url>
 
-#### iOS相关基本操作
-- 对本地IPA文件进行扫描
+Example:
+
+python app.py android -i "https://127.0.0.1/Demo.apk"
+
+```
+Note that if the URL address is too long, it needs to be wrapped in double quotes (")
+
+#### Basic operations related to iOS
+- Scan local IPA files
 ```
 python app.py ios -i <Your ipa file>
 
-例:
+Example:
 
-python app.py ios -i "C:\Users\Administrator\Desktop\Demo.ipa" 
+python app.py ios -i "C:\Users\Administrator\Desktop\Demo.ipa"
 ```
 
-- 对本地Macho文件进行扫描
+- Scan local Macho files
 ```
 python app.py ios -i <Your Mach-o file>
 
-例:
+Example:
 
-python app.py ios -i "C:\Users\Administrator\Desktop\Demo\Payload\Demo.app\Demo" 
+python app.py ios -i "C:\Users\Administrator\Desktop\Demo\Payload\Demo.app\Demo"
 ```
 
-- 对URL地址中包含的IPA文件进行扫描
+- Scan the IPA file contained in the URL address
 ```
-python app.py ios -i <IPA Download Url>  
+python app.py ios -i <IPA Download Url>
 
-例:
+Example:
 
-python app.py ios -i "https://127.0.0.1/Demo.ipa" 
+python app.py ios -i "https://127.0.0.1/Demo.ipa"
 
 ```
-需要注意此处如果URL地址过长需要使用双引号(")进行包裹,暂时不支持对Apple Store中的IPA文件进行扫描
+Note that if the URL address is too long, it needs to be wrapped in double quotes ("), and scanning of IPA files in the Apple Store is not supported for the time being
 
-#### Web相关基本操作
+#### Basic Web-related operations
 
-- 对本地WEB站点进行扫描
+- Scan local WEB sites
+
 ```
 python app.py web -i <Your web file>
 
-例:
+Example:
 
-python app.py web -i "C:\Users\Administrator\Desktop\Demo.html" 
-```
-- 对URL地址中包含的WEB站点文件进行扫描
-```
-python app.py web -i <Web Download Url>  
-
-例:
-
-python app.py web -i "https://127.0.0.1/Demo.html" 
+python app.py web -i "C:\Users\Administrator\Desktop\Demo.html"
 
 ```
+- Scan the WEB site file contained in the URL address
+```
+python app.py web -i <Web Download Url>
 
-#### 具有共同性的操作
+Example:
 
-以下操作均以android类型为例：
+python app.py web -i "https://127.0.0.1/Demo.html"
 
-- 对一个本地的目录进行扫描
+```
+
+#### Common operations
+
+The following operations are all based on the Android type as an example:
+
+- Scan a local directory
 ```
 python app.py android -i <Your Dir>
 
-例：
+Example:
 
 python app.py android -i C:\Users\Administrator\Desktop\Demo
 ```
 
-- 添加临时规则或者关键字
+- Add temporary rules or keywords
 
 ```
 python app.py android -i <Your apk> -r <the keyword | the rules>
 
-例：
-添加对百度域名的扫描
+Example:
+Add a scan for Baidu domain name
 
 python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -r ".*baidu.com.*"
 ```
 
-- 关闭网络嗅探功能
+- Turn off network sniffing
 ```
 python app.py android -i <Your apk> -s
 
-例：
+Example:
 python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -s
 
 ```
-- 忽略所有的资源文件
+- Ignore all resource files
 ```
 python app.py android -i <Your apk> -n
 
-例：
+Example:
 python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -n
 
 ```
 
-- 关闭输出所有符合扫描规则内容的功能
+- Disable the function of outputting all contents that meet the scanning rules
 ```
 python app.py android -i <Your apk> -a
 
-例：
+Example:
 
 python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -a
 ```
 
-- 设置并发数量
+- Set the number of concurrent threads
 ```
 python app.py android -i <Your apk> -t 20
 
-例：
-设置20个并发线程
-python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -t 20 
+Example:
+Set 20 concurrent threads
+python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -t 20
 ```
-- 指定结果集和缓存文件输出目录
+- Specify the output directory of the result set and cache file
 ```
 python app.py android -i <Your apk> -o <output path>
 
-例：
-比如输出到桌面的Temp目录
+Example:
+For example, output to the Temp directory on the desktop
 python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -o C:\Users\Administrator\Desktop\Temp
 ```
 
-- 对指定包名下的文件内容进行扫描，该功能仅支持android类型
+- For the file contents under the specified package name
 
 ```
 python app.py android -i <Your apk> -p <Java package name>
-
-例：
-比如需要过滤com.baidu包名下的内容
+Example:
+For example, you need to filter the content under the package name com.baidu
 
 python app.py android -i C:\Users\Administrator\Desktop\Demo.apk -p "com.baidu"
-```
-
-## 高级版使用说明
-该项目中的程序仅作为一个基本的架子，会内置一些基本的规则，并不是每一个输入的内容都可以完成相关的扫描工作。所以可以根据自己的需要进行相关规则的配置，优秀的配置内容可以达到质的的效果。
-
-
-- 配置文件路径为 根目录下的config.py文件，即README.md的同级目录
-
-### 配置项说明
-```
-filter_components: 此配置项用于配置相关组件内容，包括Json组件或者XML组件等
-filter_strs: 用于配置需要进行扫描的文件内容，比如需要扫描端口号，则配置为："r'.*://([\d{1,3}\.]{3}\d{1,3}).*'"
-filter_no: 用于忽略扫描文件中不想要的内容
-shell_list: 用于配置Android相关的壳特征
-web_file_suffix: 此处配置需要进行扫描的WEB文件后缀名称
-sniffer_filter: 此处用于配置需要进行忽略网络嗅探的文件后缀名称
-headers: 用于配置自动下载过程中需要的请求头信息
-data: 用于配置自动下载过程中需要的请求报文体
-method: 用于配置自动下载过程中需要的请求方法
-```
-
-## 常见问题
-
-###  1. 信息检索垃圾数据过多？
-
-```
-方法1： 根据实际情况调整config.py中的规则信息
-方法2： 忽略资源文件
-```
-
-### 2. 出现错误：Error: This application has shell, the retrieval results may not be accurate, Please remove the shell and try again!
-
-说明需要扫描的应用存在壳，需要进行脱壳/砸壳以后才能进行扫描，目前可以结合以下工具进行脱壳/砸壳处理
-```
-    
-    Android:
-        xposed模块： dexdump
-        frida模块： FRIDA-DEXDump
-        无Root脱壳：blackdex
-    iOS:
-        firda模块：
-            windows系统使用： frida-ipa-dump
-            MacOS系统使用：frida-ios-dump
-```
-
-### 3. 出现错误: File download failed! Please download the file manually and try again.
-
-文件下载失败。
-```
-1) 请检查输入的URL地址是否正确
-2）请检查网络是否存在问题或者在配置文件config.py中配置请求头信息(headers)、请求报文体(data)、请求方法(method)保存后重新再执行。
-```
-### 4. 出现错误：Decompilation failed, please submit error information at https://github.com/kelvinBen/AppInfoScanner/issues"
-
-文件反编译失败。
-
-```
-请将错误截图以及对应的APK文件提交至 https://github.com/kelvinBen/AppInfoScanner/issues，作者看到后会及时进行处理。
-```
-## 自定义规则添加
-
-自定义规则提交路径：
-
-[点击添加自定义规则](https://github.com/kelvinBen/AppInfoScanner/issues/7）
-
-提交格式：
-```
-1. APP自定义组件添加
-
-如： fastjson的规则如下：
-APP组件: fastjson com.alibaba.fastjson
-
-2. 需要进行搜索的字符串
-
-如：查询阿里的AK规则如下:
-字符串: 
-阿里云AK .*accessKeyId.*".*"
-
-3. 需要搜素的web文件后缀名
-
-如：jsp文件的规则如下：
-网站： java语言 jsp
-
-4. Android壳规则
-如： 某数字公司的壳规则如下：
-壳：某数字公司 com.stub.StubApp
 
 ```
 
-## 联系作者
+## Advanced version instructions
+The program in this project is only a basic framework, and some basic rules will be built in. Not every input content can complete the relevant scanning work. Therefore, you can configure the relevant rules according to your needs. Excellent configuration content can achieve qualitative results.
 
-**微信**：bromomo (添加好友请备注：GitHub)
+- The configuration file path is the config.py file in the root directory, which is the same level directory as README.md
 
-**微信群**：
+### Configuration item description
+```
+filter_components: This configuration item is used to configure the content of related components, including Json components or XML components, etc.
+filter_strs: Used to configure the content of the file to be scanned. For example, if you need to scan the port number, the configuration is: "r'.*://([\d{1,3}\.]{3}\d{1,3}).*'"
+filter_no: Used to ignore unwanted content in the scanned file
+shell_list: Used to configure Android-related shell features
+web_file_suffix: Configure the suffix name of the WEB file to be scanned here
+sniffer_filter: Used to configure the suffix name of the file that needs to be ignored for network sniffing
+headers: Used to configure the request header information required during the automatic download process
+data: Used to configure the request message body required during the automatic download process
+method: Used to configure the request method required during the automatic download process
+```
+
+## FAQ
+
+### 1. Too much junk data in information retrieval?
+
+```
+Method 1: Adjust the rule information in config.py according to the actual situation
+Method 2: Ignore resource files
+```
+
+### 2. Error: Error: This application has shell, the retrieval results may not be accurate, Please remove the shell and try again!
+
+This means that the application to be scanned has a shell, and it needs to be unshelled/smashed before scanning. Currently, the following tools can be used for unshelling/smashing
+```
+
+Android:
+xposed module: dexdump
+frida module: FRIDA-DEXDump
+Rootless unshelling: blackdex
+iOS:
+firda module:
+Windows system use: frida-ipa-dump
+MacOS system use: frida-ios-dump
+```
+
+### 3. Error: File download failed! Please download the file manually and try again.
+
+File download failed.
+```
+1) Please check if the URL you entered is correct
+2) Please check if there is a problem with the network or configure the request header information (headers), request message body (data), and request method (method) in the configuration file config.py and save and execute again.
+```
+### 4. Error: Decompilation failed, please submit error information at https://github.com/kelvinBen/AppInfoScanner/issues"
+
+File decompilation failed.
+
+```
+Please submit the error screenshot and the corresponding APK file to https://github.com/kelvinBen/AppInfoScanner/issues. The author will handle it in time after seeing it.
+```
+## Custom rule addition
+
+Custom rule submission path:
+
+[Click to add custom rules](https://github.com/kelvinBen/AppInfoScanner/issues/7）
+
+Submission format:
+```
+1. Add APP custom components
+
+For example: The rules of fastjson are as follows:
+APP component: fastjson com.alibaba.fastjson
+
+2. The string to be searched
+
+For example: The rules for querying Alibaba's AK are as follows:
+String:
+Alibaba Cloud AK .*accessKeyId.*".*"
+
+3. Web file suffixes to be searched
+
+For example: the rules for jsp files are as follows:
+Website: java language jsp
+
+4. Android shell rules
+For example: the shell rules for a certain digital company are as follows:
+Shell: a certain digital company com.stub.StubApp
+
+```
+
+## Contact the author
+
+**WeChat**: bromomo (please note: GitHub when adding friends)
+
+**WeChat group**:
 
 ![image](https://user-images.githubusercontent.com/19259171/177041407-66b627d7-39b5-40e7-9858-85dca5b4f958.png)
 
-如无法加入请添加微信好友后进群。
+If you cannot join, please add WeChat friends and join the group.
 
-**邮箱**：blsm@vip.qq.com
+**Email**: blsm@vip.qq.com
 
-提交需求、提交BUG修复、技术交流、商务合作均可添加作者好友。
+You can add the author as a friend for submitting requirements, submitting BUG fixes, technical exchanges, and business cooperation.
 
 ## Stargazers over time
 [![Stargazers over time](https://starchart.cc/kelvinBen/AppInfoScanner.svg)](https://starchart.cc/kelvinBen/AppInfoScanner)
@@ -431,6 +410,6 @@ APP组件: fastjson com.alibaba.fastjson
 ## 404StarLink 2.0 - Galaxy
 ![](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
 
-AppInfoScanner 是 404Team [星链计划2.0](https://github.com/knownsec/404StarLink2.0-Galaxy)中的一环，如果对AppInfoScanner 有任何疑问又或是想要找小伙伴交流，可以参考星链计划的加群方式。
+AppInfoScanner is a part of 404Team [StarLink Project 2.0](https://github.com/knownsec/404StarLink2.0-Galaxy). If you have any questions about AppInfoScanner or want to find friends to communicate, you can refer to the StarLink Project group joining method.
 
 [https://github.com/knownsec/404StarLink2.0-Galaxy#community](https://github.com/knownsec/404StarLink2.0-Galaxy#community)
